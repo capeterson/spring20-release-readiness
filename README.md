@@ -1,11 +1,10 @@
-This repo contains deliberatley insecure sample code for a TrailheadDX '19 presentation. 
-You really should never put this into production!
+Code samples and demos for the Apex portion of Spring '20 Release Readiness Live webinar
 
-## Slides
-https://speakerdeck.com/ca_peterson/apex-object-and-field-security-made-easy
+Requires a Spring '20 devhub to run.
+Create org: `sfdx force:org:create -f config/project-scratch-def.json -a apex-demo -s`
+Push metadata: `sfdx force:source:push -u apex-demo`
+Open org: `sfdx force:org:open -u apex-demo`
 
-## Session Recording
-https://www.youtube.com/watch?v=RIqpZCi5A5Y
-
-## Exploiting this component demo
-https://drive.google.com/a/ca-peterson.com/file/d/15MIhkgjMW9AoVsaCgNPl8sXuK9HDTlYP/view?usp=drivesdk
+For Apex security demo, open vscode with two files;
+- lwc/quickcreate/quickcreate.js
+- classes/QuickCreateController.cls
