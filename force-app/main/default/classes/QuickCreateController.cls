@@ -5,18 +5,7 @@
 
 public with sharing class QuickCreateController {
 
-    @AuraEnabled
-    public static List<Opportunity> fetchOpportunities(){
-        //note: despite the standard user not having access to Manager_Approved__c this query will run
-        //WITH SECURITY_ENFORCED only appllies to the selected fields/objects, not the WHERE or ORDER BY clauses
-        try{
-            return [SELECT Id, Name, Amount, CloseDate FROM Opportunity WHERE Manager_Approved__c = true WITH SECURITY_ENFORCED];
-        }catch(System.QueryException e){
-            //surface the QueryException from WITH SECURITY_ENFORCED as handleable client side
-            throw new AuraHandledException(e.getMessage()); 
-        }
 
-    }
 
     @AuraEnabled
     public static Opportunity create(Opportunity opp){
@@ -35,4 +24,17 @@ public with sharing class QuickCreateController {
         insert opp;
         return opp;
     }
+
+    @AuraEnabled
+    public static List<Opportunity> fetchOpportunities(){
+        //note: despite the standard user not having access to Manager_Approved__c this query will run
+        //WITH SECURITY_ENFORCED only appllies to the selected fields/objects, not the WHERE or ORDER BY clauses
+        try{
+            return [SELECT Id, Name, Amount, CloseDate FROM Opportunity WHERE Manager_Approved__c = true WITH SECURITY_ENFORCED];
+        }catch(System.QueryException e){
+            //surface the QueryException from WITH SECURITY_ENFORCED as handleable client side
+            throw new AuraHandledException(e.getMessage()); 
+        }
+    }
+    
 }

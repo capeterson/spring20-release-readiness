@@ -24,9 +24,8 @@ export default class Quickcreate extends LightningElement {
     }
 
     saveRecord(event) {
-        //let's pretend an attacker set a javascript breakpoint here, and then tried to inject a custom field our controller didn't expect
-        this.opp.Manager_Approved__c = true;
-        //end injection attack
+        debugger;
+        // a malicious client could inject js here: this.opp.Manager_Approved__c = true;
         create({opp: this.opp})
             .then(result => {
                 this.opp = result;
